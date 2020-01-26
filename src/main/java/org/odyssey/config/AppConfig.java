@@ -1,4 +1,4 @@
-package org.odyssey.spring;
+package org.odyssey.config;
 
 import org.odyssey.security.ActiveUserStore;
 import org.springframework.context.annotation.Bean;

@@ -1,0 +1,13 @@
+spring:
+  profiles: prod
+jdbc:
+  driverClassName: "org.postgresql.Driver"
+  url: "jdbc:postgresql://192.168.1.238:5432/demo_dev?createDatabaseIfNotExist=true"
+  user: "postgres"
+  pass: "password"
+  init-db: false
+hibernate:
+  dialect: "org.hibernate.dialect.PostgresSQL95Dialect"
+  show_sql: false
+  hbm2ddl:
+    auto: "update"

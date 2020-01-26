@@ -17,10 +17,12 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class UserSecurityService implements ISecurityUserService {
 
-	@Autowired
 	private PasswordResetTokenRepository passwordTokenRepository;
 
-	// API
+	@Autowired
+	public UserSecurityService(PasswordResetTokenRepository passwordTokenRepository) {
+		this.passwordTokenRepository = passwordTokenRepository;
+	}
 
 	@Override
 	public String validatePasswordResetToken(long id, String token) {
@@ -39,5 +41,4 @@ public class UserSecurityService implements ISecurityUserService {
 		SecurityContextHolder.getContext().setAuthentication(auth);
 		return null;
 	}
-
 }

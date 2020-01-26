@@ -15,19 +15,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class RegistrationListener implements ApplicationListener<OnRegistrationCompleteEvent> {
 
-	@Autowired
 	private IUserService service;
 
-	@Autowired
 	private MessageSource messageSource;
 
-	@Autowired
 	private JavaMailSender mailSender;
 
-	@Autowired
 	private Environment env;
 
-	// API
+	@Autowired
+	public RegistrationListener(IUserService service, MessageSource messageSource, JavaMailSender mailSender, Environment env) {
+		this.service = service;
+		this.messageSource = messageSource;
+		this.mailSender = mailSender;
+		this.env = env;
+	}
 
 	@Override
 	public void onApplicationEvent(final OnRegistrationCompleteEvent event) {

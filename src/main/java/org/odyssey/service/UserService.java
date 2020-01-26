@@ -30,22 +30,16 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class UserService implements IUserService {
 
-	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
 	private VerificationTokenRepository tokenRepository;
 
-	@Autowired
 	private PasswordResetTokenRepository passwordTokenRepository;
 
-	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@Autowired
 	private RoleRepository roleRepository;
 
-	@Autowired
 	private SessionRegistry sessionRegistry;
 
 	public static final String TOKEN_INVALID = "invalidToken";
@@ -55,7 +49,17 @@ public class UserService implements IUserService {
 	public static String QR_PREFIX = "https://chart.googleapis.com/chart?chs=200x200&chld=M%%7C0&cht=qr&chl=";
 	public static String APP_NAME = "SpringRegistration";
 
-	// API
+	@Autowired
+	public UserService(UserRepository userRepository, VerificationTokenRepository tokenRepository,
+		PasswordResetTokenRepository passwordTokenRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository,
+		SessionRegistry sessionRegistry) {
+		this.userRepository = userRepository;
+		this.tokenRepository = tokenRepository;
+		this.passwordTokenRepository = passwordTokenRepository;
+		this.passwordEncoder = passwordEncoder;
+		this.roleRepository = roleRepository;
+		this.sessionRegistry = sessionRegistry;
+	}
 
 	@Override
 	public User registerNewUserAccount(final UserDto accountDto) {
@@ -224,5 +228,4 @@ public class UserService implements IUserService {
 			.collect(Collectors.toList());
 
 	}
-
 }

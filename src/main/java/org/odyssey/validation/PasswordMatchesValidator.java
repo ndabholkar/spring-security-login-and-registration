@@ -16,5 +16,4 @@ public class PasswordMatchesValidator implements ConstraintValidator<PasswordMat
 		final UserDto user = (UserDto) obj;
 		return user.getPassword().equals(user.getMatchingPassword());
 	}
-
 }

@@ -1,4 +1,4 @@
-package org.odyssey.spring;
+package org.odyssey.config;
 
 import java.util.Locale;
 import org.odyssey.validation.EmailValidator;

@@ -1,0 +1,66 @@
+spring:
+  profiles:
+    active: "prod"
+  main:
+    banner-mode: "off"
+  server:
+    port: 8080
+  thymeleaf:
+    cache: false
+  mail:
+    host: "smtp.gmail.com"
+    port: 465
+    protocol: "smtps"
+    username: "USERNAME@gmail.com"
+    password: "PASSWORD"
+    properties:
+      mail:
+        transport:
+          protocol: "smtps"
+        smtps:
+          auth: true
+          starttls:
+            enable: true
+          timeout: 8000
+purge:
+  cron:
+    expression: "0 0 5 * * ?"
+google:
+  recaptcha:
+    key:
+      site: "6LfaHiITAAAAAAgZBHl4ZUZAYk5RlOYTr6m2N34X"
+      secret: "6LfaHiITAAAAANpDTA_Zflwib95IhDqg2SNRLt4U"
+support:
+  email: "USERNAME@gmail.com"
+
+---
+
+spring:
+  profiles: test1
+jdbc:
+  driverClassName: "org.h2.Driver"
+  url: "jdbc:h2:mem:registration_02;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE"
+  user: "sa"
+  pass: ""
+  init-db: false
+hibernate:
+  dialect: "org.hibernate.dialect.H2Dialect"
+  show_sql: true
+  hbm2ddl:
+    auto: "create-drop"
+
+---
+
+spring:
+  profiles: test2
+jdbc:
+  driverClassName: "org.postgresql.Driver"
+  url: "jdbc:postgresql://192.168.1.238:5432/demo_dev?createDatabaseIfNotExist=true"
+  user: "postgres"
+  pass: "secret"
+  init-db: false
+hibernate:
+  dialect: "org.hibernate.dialect.PostgresSQL95Dialect"
+  show_sql: false
+  hbm2ddl:
+    auto: "update"

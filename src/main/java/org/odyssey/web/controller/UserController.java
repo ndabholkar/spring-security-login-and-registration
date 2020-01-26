@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UserController {
 
-	@Autowired
 	ActiveUserStore activeUserStore;
 
-	@Autowired
 	IUserService userService;
+
+	@Autowired
+	public UserController(ActiveUserStore activeUserStore, IUserService userService) {
+		this.activeUserStore = activeUserStore;
+		this.userService = userService;
+	}
 
 	@RequestMapping(value = "/loggedUsers", method = RequestMethod.GET)
 	public String getLoggedUsers(final Locale locale, final Model model) {

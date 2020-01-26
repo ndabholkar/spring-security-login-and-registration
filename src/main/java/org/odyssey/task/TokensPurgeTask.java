@@ -13,11 +13,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class TokensPurgeTask {
 
-	@Autowired
 	VerificationTokenRepository tokenRepository;
 
-	@Autowired
 	PasswordResetTokenRepository passwordTokenRepository;
+
+	@Autowired
+	public TokensPurgeTask(VerificationTokenRepository tokenRepository, PasswordResetTokenRepository passwordTokenRepository) {
+		this.tokenRepository = tokenRepository;
+		this.passwordTokenRepository = passwordTokenRepository;
+	}
 
 	@Scheduled(cron = "${purge.cron.expression}")
 	public void purgeExpired() {

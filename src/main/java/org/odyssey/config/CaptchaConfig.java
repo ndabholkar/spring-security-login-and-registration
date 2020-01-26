@@ -1,4 +1,4 @@
-package org.odyssey.spring;
+package org.odyssey.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

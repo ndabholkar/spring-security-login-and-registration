@@ -22,20 +22,19 @@ public class RegistrationCaptchaController {
 
 	private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
-	@Autowired
 	private IUserService userService;
 
-	@Autowired
 	private ICaptchaService captchaService;
 
-	@Autowired
 	private ApplicationEventPublisher eventPublisher;
 
-	public RegistrationCaptchaController() {
-		super();
+	@Autowired
+	public RegistrationCaptchaController(IUserService userService, ICaptchaService captchaService,
+		ApplicationEventPublisher eventPublisher) {
+		this.userService = userService;
+		this.captchaService = captchaService;
+		this.eventPublisher = eventPublisher;
 	}
-
-	// Registration
 
 	@RequestMapping(value = "/user/registrationCaptcha", method = RequestMethod.POST)
 	@ResponseBody

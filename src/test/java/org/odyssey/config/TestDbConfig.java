@@ -1,4 +1,4 @@
-package org.odyssey.spring;
+package org.odyssey.config;
 
 import java.util.Properties;
 import javax.sql.DataSource;

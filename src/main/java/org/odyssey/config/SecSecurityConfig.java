@@ -1,4 +1,4 @@
-package org.odyssey.spring;
+package org.odyssey.config;
 
 import org.odyssey.persistence.dao.UserRepository;
 import org.odyssey.security.CustomRememberMeServices;
@@ -54,7 +54,6 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
 		super();
 	}
 
-
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -62,6 +61,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
+	@Autowired
 	protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(authProvider());
 	}
@@ -114,7 +114,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	public DaoAuthenticationProvider authProvider() {
-		final CustomAuthenticationProvider authProvider = new CustomAuthenticationProvider();
+		final CustomAuthenticationProvider authProvider = new CustomAuthenticationProvider(userRepository);
 		authProvider.setUserDetailsService(userDetailsService);
 		authProvider.setPasswordEncoder(encoder());
 		return authProvider;

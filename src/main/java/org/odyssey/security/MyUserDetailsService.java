@@ -21,20 +21,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class MyUserDetailsService implements UserDetailsService {
 
-	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
 	private LoginAttemptService loginAttemptService;
 
-	@Autowired
 	private HttpServletRequest request;
 
-	public MyUserDetailsService() {
-		super();
+	@Autowired
+	public MyUserDetailsService(UserRepository userRepository, LoginAttemptService loginAttemptService, HttpServletRequest request) {
+		this.userRepository = userRepository;
+		this.loginAttemptService = loginAttemptService;
+		this.request = request;
 	}
-
-	// API
 
 	@Override
 	public UserDetails loadUserByUsername(final String email) throws UsernameNotFoundException {
@@ -55,8 +53,6 @@ public class MyUserDetailsService implements UserDetailsService {
 			throw new RuntimeException(e);
 		}
 	}
-
-	// UTIL
 
 	private final Collection<? extends GrantedAuthority> getAuthorities(final Collection<Role> roles) {
 		return getGrantedAuthorities(getPrivileges(roles));

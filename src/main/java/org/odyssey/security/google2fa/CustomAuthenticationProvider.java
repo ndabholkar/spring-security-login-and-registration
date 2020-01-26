@@ -13,8 +13,12 @@ import org.springframework.security.core.AuthenticationException;
 //@Component
 public class CustomAuthenticationProvider extends DaoAuthenticationProvider {
 
-	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	public CustomAuthenticationProvider(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {

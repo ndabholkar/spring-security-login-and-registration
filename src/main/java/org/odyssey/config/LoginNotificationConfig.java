@@ -1,4 +1,4 @@
-package org.odyssey.spring;
+package org.odyssey.config;
 
 import com.maxmind.geoip2.DatabaseReader;
 import java.io.File;

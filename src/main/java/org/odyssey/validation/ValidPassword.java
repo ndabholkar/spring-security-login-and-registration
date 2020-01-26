@@ -22,5 +22,4 @@ public @interface ValidPassword {
 	Class<?>[] groups() default {};
 
 	Class<? extends Payload>[] payload() default {};
-
 }

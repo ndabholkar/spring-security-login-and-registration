@@ -9,11 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthenticationFailureListener implements ApplicationListener<AuthenticationFailureBadCredentialsEvent> {
 
-	@Autowired
 	private HttpServletRequest request;
 
-	@Autowired
 	private LoginAttemptService loginAttemptService;
+
+	@Autowired
+	public AuthenticationFailureListener(HttpServletRequest request, LoginAttemptService loginAttemptService) {
+		this.request = request;
+		this.loginAttemptService = loginAttemptService;
+	}
 
 	@Override
 	public void onApplicationEvent(final AuthenticationFailureBadCredentialsEvent e) {

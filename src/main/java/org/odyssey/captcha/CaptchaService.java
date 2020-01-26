@@ -16,21 +16,26 @@ import org.springframework.web.client.RestOperations;
 @Service("captchaService")
 public class CaptchaService implements ICaptchaService {
 
-	private final static Logger LOGGER = LoggerFactory.getLogger(CaptchaService.class);
-
-	@Autowired
-	private HttpServletRequest request;
-
-	@Autowired
-	private CaptchaSettings captchaSettings;
-
-	@Autowired
-	private ReCaptchaAttemptService reCaptchaAttemptService;
-
-	@Autowired
-	private RestOperations restTemplate;
+	private static final Logger LOGGER = LoggerFactory.getLogger(CaptchaService.class);
 
 	private static final Pattern RESPONSE_PATTERN = Pattern.compile("[A-Za-z0-9_-]+");
+
+	private HttpServletRequest request;
+
+	private CaptchaSettings captchaSettings;
+
+	private ReCaptchaAttemptService reCaptchaAttemptService;
+
+	private RestOperations restTemplate;
+
+	@Autowired
+	public CaptchaService(HttpServletRequest request, CaptchaSettings captchaSettings, ReCaptchaAttemptService reCaptchaAttemptService,
+		RestOperations restTemplate) {
+		this.request = request;
+		this.captchaSettings = captchaSettings;
+		this.reCaptchaAttemptService = reCaptchaAttemptService;
+		this.restTemplate = restTemplate;
+	}
 
 	@Override
 	public void processResponse(final String response) {
